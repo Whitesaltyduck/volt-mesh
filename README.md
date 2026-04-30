@@ -70,12 +70,17 @@ python skills/run_simulation.py
 
 ## 📊 Expected Outputs
 
-![Efficiency Audit Dashboard](assets/dashboard.png)
-When running the simulation, the system will output a detailed markdown report named **`efficiency_audit.md`** inside the `skills/` folder. This report includes:
+When running the simulation, the system will output a detailed text-based markdown report named **`efficiency_audit.md`** inside the `skills/` folder. This report includes:
 * The simulated power consumption vs. the grid's safety threshold.
 * The calculated $P(\text{Overload})$ probability.
 * The Load Optimizer's recommended Eco hour for load displacement.
 * Strategic insights for grid stability and customer notifications.
+
+## 🔮 Future Roadmap: UI Dashboard
+
+While the current system outputs diagnostic data via markdown text files, future iterations of the Volt-Mesh project aim to incorporate a real-time web interface. The conceptual design below illustrates the target UI for the final production dashboard:
+
+![Efficiency Audit Dashboard](assets/dashboard.png)
 
 ## 🛠️ Troubleshooting
 
