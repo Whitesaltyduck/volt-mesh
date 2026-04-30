@@ -1,0 +1,68 @@
+{
+  "agents": [
+    {
+      "name": "Clusternaut",
+      "role": "Usage Profiler",
+      "description": "Uses K-Means clustering to classify 24-hour usage patterns into Eco, Moderate, and Peak zones.",
+      "skill": "usage_profiler.py",
+      "permissions": {
+        "can_read": ["cluster_map.json"],
+        "can_write": ["cluster_map.json"],
+        "can_execute": true
+      },
+      "triggers": ["simulation_start"]
+    },
+    {
+      "name": "The Predictor",
+      "role": "Reliability Sentinel",
+      "description": "Uses Naive Bayes Classifier to calculate P(Overload | Current_Load) and triggers Load Balance Requests when probability > 0.75.",
+      "skill": "reliability_sentinel.py",
+      "permissions": {
+        "can_read": ["reliability_sentinel_model.joblib", "cluster_map.json"],
+        "can_write": [],
+        "can_execute": true
+      },
+      "triggers": ["load_balance_request", "high_voltage_spike"]
+    },
+    {
+      "name": "The Searcher",
+      "role": "Load Optimizer",
+      "description": "Implements Greedy Best-First Search to find lowest-cost 1-hour window for heavy appliances based on Eco zones.",
+      "skill": "load_optimizer.py",
+      "permissions": {
+        "can_read": ["cluster_map.json", "load_optimizer_recommendation.json"],
+        "can_write": ["load_optimizer_recommendation.json"],
+        "can_execute": true
+      },
+      "triggers": ["load_balance_request", "optimization_request"]
+    }
+  ],
+   "interaction_rules": {
+    "Clusternaut": {
+      "can_notify": ["The Predictor", "The Searcher"],
+      "notification_events": ["cluster_map_updated"]
+    },
+    "The Predictor": {
+      "can_notify": ["The Searcher"],
+      "notification_events": ["load_balance_request"]
+    },
+    "The Searcher": {
+      "can_notify": [],
+      "notification_events": ["optimization_complete"]
+    }
+  },
+  "shared_resources": {
+    "cluster_map.json": {
+      "description": "Map of hour-of-day to usage zone (Eco/Moderate/Peak)",
+      "format": "json"
+    },
+    "reliability_sentinel_model.joblib": {
+      "description": "Trained Naive Bayes model for overload prediction",
+      "format": "joblib"
+    },
+    "load_optimizer_recommendation.json": {
+      "description": "Recommendation for optimal heavy appliance scheduling",
+      "format": "json"
+    }
+  }
+}

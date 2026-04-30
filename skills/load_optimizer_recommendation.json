@@ -1,0 +1,14 @@
+{
+  "optimal_hour": 4,
+  "optimal_zone": "Eco",
+  "optimal_cost": 1,
+  "all_eco_hours": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ]
+}
