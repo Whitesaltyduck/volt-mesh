@@ -1,5 +1,6 @@
 # Volt-Mesh: Autonomous Multi-Agent Smart Grid System
 
+![Volt-Mesh Architecture](assets/architecture.png)
 Volt-Mesh is an intelligent, decentralized multi-agent system designed to diagnose smart grid health and balance residential loads. It transforms a passive electrical network into an adaptive ecosystem capable of predicting overloads and scheduling high-power appliances during cost-effective "Eco" time windows.
 
 ## 📋 Prerequisites
@@ -18,6 +19,7 @@ To run Volt-Mesh on your machine, you will need the following installed:
 
 ## 🏗️ System Architecture (The Agents)
 
+![Volt-Mesh Methodology](assets/methodology.png)
 Volt-Mesh uses a heterogeneous multi-agent mesh configured in `opencode.json`. The agents communicate via a shared memory interface located in the `skills/` directory.
 
 * **Agent 1: Usage Profiler (Clusternaut)**
@@ -68,6 +70,7 @@ python skills/run_simulation.py
 
 ## 📊 Expected Outputs
 
+![Efficiency Audit Dashboard](assets/dashboard.png)
 When running the simulation, the system will output a detailed markdown report named **`efficiency_audit.md`** inside the `skills/` folder. This report includes:
 * The simulated power consumption vs. the grid's safety threshold.
 * The calculated $P(\text{Overload})$ probability.
